@@ -1,0 +1,18 @@
+body {
+  font-size: 16px;
+  background: hsl(229, 24%, 87%);
+}
+h2 {
+  font-weight: 500;
+  color: hsl(0, 0%, 100%);
+}
+span {
+  font-weight: 400;
+}
+p {
+  font-size: 0.5rem;
+  color: hsl(229, 24%, 87%);
+}
+span{
+  color: hsl(231, 11%, 63%);
+}
