@@ -26,7 +26,7 @@ function Thank() {
       >
         Thank you!
       </Typography>
-      <Typography textAlign={"center"}>
+      <Typography textAlign={"center"} color={"hsl(231, 11%, 63%)"}>
         Thanks for confirming your subscription! We hope you have fun using our
         platform. If you ever need support, please feel free to email us at
         support@loremgaming.com.

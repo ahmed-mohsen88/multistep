@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-function Step({ stepNumber, circle_color, numberColor ,stepText }) {
+function Step({ stepNumber, circle_color, numberColor, stepText }) {
   return (
     <Grid
       container
@@ -10,7 +10,7 @@ function Step({ stepNumber, circle_color, numberColor ,stepText }) {
       display={"flex"}
       alignItems={"center"}
     >
-      <Grid item xs={2.5} columns={16}  sx={{ textAlign: "center" }}>
+      <Grid item xs={2.5} columns={16} sx={{ textAlign: "center" }}>
         <Typography
           sx={{
             width: "36px",
@@ -19,7 +19,7 @@ function Step({ stepNumber, circle_color, numberColor ,stepText }) {
             background: `${circle_color}`,
             color: `${numberColor}`,
             margin: "auto",
-            marginLeft:"10px" , 
+            marginLeft: "10px",
             border: "1px solid white",
           }}
           alignItems={"center"}
@@ -31,10 +31,8 @@ function Step({ stepNumber, circle_color, numberColor ,stepText }) {
         </Typography>
       </Grid>
       <Grid item xs={6}>
-        <Typography item component={"p"}>
-          {`STEP ${stepNumber}`}
-        </Typography>
-        <Typography item component={"h2"} fontWeight={700}>
+        <Typography component={"p"}>{`STEP ${stepNumber}`}</Typography>
+        <Typography component={"h2"} fontWeight={700}>
           {stepText}
         </Typography>
       </Grid>

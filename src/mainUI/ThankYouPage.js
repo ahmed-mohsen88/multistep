@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBar from "../component/SideBar";
-import Form from "../component/Form";
 import { Container, Stack } from "@mui/material";
 import Step from "../component/Step";
+import "../assets/Css/step2.css";
+import Thank from "../component/Thank";
 
-function Page1() {
-
-
+function ThankYouPage() {
   return (
     <Stack
       sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
@@ -29,8 +28,8 @@ function Page1() {
         <SideBar>
           <Step
             stepNumber="1"
-            circle_color="hsl(206, 94%, 87%)"
-            numberColor="black"
+            circle_color="inherit"
+            numberColor="white"
             stepText="YOUR INFO"
           />
           <Step
@@ -47,17 +46,16 @@ function Page1() {
           />
           <Step
             stepNumber="4"
-            circle_color="inherit"
-            numberColor="white"
+            circle_color="hsl(206, 94%, 87%)"
+            numberColor="black"
             stepText="SUMMARY"
           />
         </SideBar>
-
-        {/* form step1 */}
-        <Form />
+        {/* thank you */}
+        <Thank />
       </Container>
     </Stack>
   );
 }
 
-export default Page1;
+export default ThankYouPage;

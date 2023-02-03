@@ -21,9 +21,9 @@ function Plan({
       border={"2px solid"}
       borderColor={planBorder}
       className="plan"
-      onClick={(e) => handelClick(planName , e)}
+      onClick={(e) => handelClick(planName, price, e)}
     >
-      <Grid margin={"20px"}>
+      <Grid margin={"15px"}>
         <img src={planImage} alt="arcade" />
       </Grid>
       <Grid margin={"20px"}>

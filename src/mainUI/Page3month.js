@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../component/SideBar";
 import { Container, Stack } from "@mui/material";
-import Step2 from "../component/Step2";
 import Step from "../component/Step";
 import "../assets/Css/step2.css";
 import Step3Monthly from "../component/Monthly/Step3Monthly";
+import ServicesMonthly from "../component/Monthly/ServicesMonthly";
 
-function Page2() {
+function Page3month() {
+  const [hash, sethash] = useState(window.location.hash);
+  console.log(hash);
+  useEffect(() => {
+    sethash("page3month");
+    window.location.hash = "page3month";
+    window.addEventListener("hashchange", function (e) {
+      localStorage.removeItem("Online service");
+      localStorage.removeItem("Larger storage");
+      localStorage.removeItem("Customizable Profile");
+    });
+  }, []);
+
+
   return (
     <Stack
       sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
@@ -35,14 +48,14 @@ function Page2() {
           />
           <Step
             stepNumber="2"
-            circle_color="hsl(206, 94%, 87%)"
-            numberColor="black"
+            circle_color="inherit"
+            numberColor="white"
             stepText="SELECT PLAN"
           />
           <Step
             stepNumber="3"
-            circle_color="inherit"
-            numberColor="white"
+            circle_color="hsl(206, 94%, 87%)"
+            numberColor="black"
             stepText="ADD-ONS"
           />
           <Step
@@ -53,19 +66,29 @@ function Page2() {
           />
         </SideBar>
 
-        <Step3Monthly />
-        {/* step 3 */}
-        {/* <Step3Monthly /> */}
         {/* <Step3Yearly /> */}
+        <Step3Monthly>
+          <ServicesMonthly
+            service_text={"Online service"}
+            service_desc={"Access to multiplayer games"}
+            price={"+$1/mo"}
+          />
 
-        {/* step 4 */}
-        {/* <Finishing/> */}
+          <ServicesMonthly
+            service_text={"Larger storage"}
+            service_desc={"Extra 1TB of cloud save"}
+            price={"+$2/mo"}
+          />
 
-        {/* Thank you */}
-        {/* <Thank /> */}
+          <ServicesMonthly
+            service_text={"Customizable Profile"}
+            service_desc={"Custom theme on your profile"}
+            price={"+$2/mo"}
+          />
+        </Step3Monthly>
       </Container>
     </Stack>
   );
 }
 
-export default Page2;
+export default Page3month;

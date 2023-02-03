@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { Stack } from "@mui/material";
 import SideBar from "../component/SideBar";
-import Form from "../component/Form";
-import { Container, Stack } from "@mui/material";
 import Step from "../component/Step";
+import { Container } from "@mui/system";
+import FinishingYear from "../component/FinishingYear";
 
-function Page1() {
+function Page4year() {
 
 
   return (
@@ -29,8 +30,8 @@ function Page1() {
         <SideBar>
           <Step
             stepNumber="1"
-            circle_color="hsl(206, 94%, 87%)"
-            numberColor="black"
+            circle_color="inherit"
+            numberColor="white"
             stepText="YOUR INFO"
           />
           <Step
@@ -47,17 +48,16 @@ function Page1() {
           />
           <Step
             stepNumber="4"
-            circle_color="inherit"
-            numberColor="white"
+            circle_color="hsl(206, 94%, 87%)"
+            numberColor="black"
             stepText="SUMMARY"
           />
         </SideBar>
-
-        {/* form step1 */}
-        <Form />
+        {/* page 4 */}
+        <FinishingYear />
       </Container>
     </Stack>
   );
 }
 
-export default Page1;
+export default Page4year;

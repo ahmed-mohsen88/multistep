@@ -2,7 +2,7 @@ import { Button, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Finishing() {
+function FinishingYear() {
   const [data, setdata] = useState({
     planName: "",
     per: "",
@@ -21,7 +21,6 @@ function Finishing() {
     const service1 = JSON.parse(localStorage.getItem("Online service"));
     const service2 = JSON.parse(localStorage.getItem("Larger storage"));
     const service3 = JSON.parse(localStorage.getItem("Customizable Profile"));
-
     setdata({
       planName: plan?.name ? plan?.name : "",
       per: plan?.per ? plan?.per : "",
@@ -103,7 +102,7 @@ function Finishing() {
         <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
           Finishing up
         </Typography>
-        <Typography component={"p"} color={" hsl(231, 11%, 63%)"}>
+        <Typography component={"p"} color={"hsl(231, 11%, 63%)"}>
           Double-check everything looks OK before confirming.
         </Typography>
       </Grid>
@@ -121,16 +120,13 @@ function Finishing() {
             <Typography
               color={"hsl(213, 96%, 18%)"}
               component={"h2"}
-              fontWeight={"700"}
+              fontWeight={700}
             >
               {data.planName ? data.planName : ""}
               {data.per ? ` (${data.per})` : ""}
             </Typography>
             {data.planName && (
-              <Link
-                onClick={handelRemoveStorage}
-                to={"/page2"}
-              >
+              <Link onClick={handelRemoveStorage} to={"/page2"}>
                 <Typography
                   color={"hsl(231, 11%, 63%)"}
                   style={{
@@ -151,11 +147,11 @@ function Finishing() {
               </Link>
             )}
           </Stack>
-          <Grid alignItems={"center"} display={"flex"}>
+          <Grid item alignItems={"center"} display={"flex"}>
             <Typography
               color={"hsl(213, 96%, 18%)"}
               component={"span"}
-              fontWeight={"500"}
+              fontWeight={500}
             >
               {data.planPrice ? data.planPrice : ""}
             </Typography>
@@ -178,7 +174,7 @@ function Finishing() {
               alignItems={"center"}
               justifyContent={"space-between"}
             >
-              <Typography color={" hsl(231, 11%, 63%)"}>
+              <Typography color={"hsl(231, 11%, 63%)"}>
                 {data.online}
               </Typography>
               <Typography component={"span"} color={"hsl(213, 96%, 18%)"}>
@@ -193,7 +189,7 @@ function Finishing() {
               alignItems={"center"}
               justifyContent={"space-between"}
             >
-              <Typography color={" hsl(231, 11%, 63%)"}>
+              <Typography color={"hsl(231, 11%, 63%)"}>
                 {data.larger}
               </Typography>
               <Typography component={"span"} color={"hsl(213, 96%, 18%)"}>
@@ -208,10 +204,10 @@ function Finishing() {
               alignItems={"center"}
               justifyContent={"space-between"}
             >
-              <Typography color={" hsl(231, 11%, 63%)"}>
+              <Typography color={"hsl(231, 11%, 63%)"}>
                 {data.custom}
               </Typography>
-              <Typography component={"span"} color={" hsl(213, 96%, 18%)"}>
+              <Typography component={"span"} color={"hsl(213, 96%, 18%)"}>
                 {data.customPrice}
               </Typography>
             </Grid>
@@ -227,7 +223,7 @@ function Finishing() {
         padding={"25px"}
         paddingTop={"0px"}
       >
-        <Typography color={" hsl(231, 11%, 63%)"}>
+        <Typography color={"hsl(231, 11%, 63%)"}>
           Total {data.per ? `(${data.per})` : ""}
         </Typography>
         <Typography
@@ -236,14 +232,14 @@ function Finishing() {
           component={"span"}
           fontWeight={700}
         >
-          {data.total ? `+${data.total}$/mo` : ""}
+          {data.total ? `+${data.total}$/yr` : ""}
         </Typography>
       </Grid>
 
       {/* button */}
       <Grid container height={"100%"} justifyContent={"space-between"}>
         <Link
-          to={"/page3month"}
+          to={"/page3year"}
           onClick={handelRemoveStorage}
           style={{
             display: "flex",
@@ -289,4 +285,4 @@ function Finishing() {
   );
 }
 
-export default Finishing;
+export default FinishingYear;

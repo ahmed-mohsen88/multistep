@@ -1,11 +1,18 @@
-import React, { useState } from "react";
-import { Button, Grid, Switch, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Alert,
+  Button,
+  Grid,
+  Snackbar,
+  Switch,
+  Typography,
+} from "@mui/material";
 import { Stack } from "@mui/system";
 import Plan from "./Plan";
 import arcade from "../assets/images/icon-arcade.svg";
 import advanced from "../assets/images/icon-advanced.svg";
 import pro from "../assets/images/icon-pro.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import "../assets/Css/step2.css";
 
@@ -15,12 +22,15 @@ function Step2() {
     activeColor: "hsl(213, 96%, 18%)",
     inActiveColor: "hsl(231, 11%, 63%)",
     checked: false,
+    month_year: "Monthly",
   });
   // state to set active plan
   const [plans, setplan] = useState({
     backgroundPlan: "white",
     planBorder: "hsl(231, 11%, 63%)",
     eventTarget: "",
+    price: "",
+    err: "",
   });
   // custom switch button
   const AntSwitch = styled(Switch)(({ theme }) => ({
@@ -80,6 +90,7 @@ function Step2() {
         inActiveColor: "hsl(213, 96%, 18%)",
         activeColor: "hsl(231, 11%, 63%)",
         checked: event.target.checked,
+        month_year: "Yearly",
       };
       setActiveState(h);
     } else {
@@ -87,20 +98,43 @@ function Step2() {
         activeColor: "hsl(213, 96%, 18%)",
         inActiveColor: "hsl(231, 11%, 63%)",
         checked: event.target.checked,
+        month_year: "Monthly",
       };
       setActiveState(h);
     }
   };
 
   // handel choose
-  const handelClick = (planName, e) => {
+  const handelClick = (planName, price, e) => {
+    console.log(price);
     let newPlan = { ...plans };
     newPlan = {
       backgroundPlan: "hsl(231, 100%, 99%)",
       planBorder: "hsl(213, 96%, 33%)",
       eventTarget: planName,
+      price: price,
     };
     setplan(newPlan);
+  };
+
+  useEffect(() => {
+    localStorage.setItem(
+      "plan name",
+      JSON.stringify({
+        name: plans.eventTarget,
+        per: activeState.month_year,
+        price: plans.price,
+      })
+    );
+  }, [plans.eventTarget, activeState.month_year, plans.price]);
+  const navigate = useNavigate();
+  const checkSelected = (e) => {
+    e.preventDefault();
+    if (!plans.eventTarget) {
+      setplan({ ...plans, err: "please select one plan" });
+    } else {
+      activeState.checked ? navigate("/page3year") : navigate("/page3month");
+    }
   };
   return (
     // container
@@ -122,13 +156,25 @@ function Step2() {
         <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
           Select your plan
         </Typography>
-        <Typography component={"p"}>
+        <Typography component={"p"} style={{ color: "hsl(231, 11%, 63%)" }}>
           You have the option of monthly or yearly billing.
         </Typography>
       </Grid>
 
-      {/* plan */}
+      {/* error message if not select plan */}
       <Grid container justifyContent={"space-between"}>
+        {plans.err && (
+          <Snackbar
+            open={true}
+            autoHideDuration={6000}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <Alert severity="error" sx={{ width: "100%" }}>
+              {plans.err}
+            </Alert>
+          </Snackbar>
+        )}
+        {/* plan */}
         <Plan
           planName="Arcade"
           planImage={arcade}
@@ -140,7 +186,7 @@ function Step2() {
           }
           price={!activeState.checked ? "$9/mo" : "$90/yr"}
           free={!activeState.checked ? "" : "2 months free"}
-          handelClick={(planName, e) => handelClick(planName, e)}
+          handelClick={(planName, price, e) => handelClick(planName, price, e)}
         />
         <Plan
           planName="Advanced"
@@ -153,7 +199,7 @@ function Step2() {
           }
           price={!activeState.checked ? "$12/mo" : "$120/yr"}
           free={!activeState.checked ? "" : "2 months free"}
-          handelClick={(planName, e) => handelClick(planName, e)}
+          handelClick={(planName, price, e) => handelClick(planName, price, e)}
         />
         <Plan
           planName="Pro"
@@ -164,7 +210,7 @@ function Step2() {
           planBorder={"Pro" === plans.eventTarget ? plans.planBorder : "none"}
           price={!activeState.checked ? "$15/mo" : "$150/yr"}
           free={!activeState.checked ? "" : "2 months free"}
-          handelClick={(planName, e) => handelClick(planName, e)}
+          handelClick={(planName, price, e) => handelClick(planName, price, e)}
         />
       </Grid>
 
@@ -190,7 +236,7 @@ function Step2() {
           <Typography color={activeState.inActiveColor}>Yearly</Typography>
         </Stack>
       </Grid>
-
+      {/* button */}
       <Grid container height={"100%"} justifyContent={"space-between"}>
         <Link
           to={"/"}
@@ -218,6 +264,9 @@ function Step2() {
             textDecoration: "none",
             alignSelf: "flex-end",
             justifyContent: "center",
+          }}
+          onClick={(e) => {
+            checkSelected(e);
           }}
         >
           <Button
