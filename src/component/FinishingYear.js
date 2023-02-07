@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function FinishingYear() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
-
+  // state
   const [data, setdata] = useState({
     planName: "",
     per: "",
@@ -18,7 +19,7 @@ function FinishingYear() {
     customPrice: "",
     total: "",
   });
-
+  // save data to local storage
   useEffect(() => {
     const plan = JSON.parse(localStorage.getItem("plan name"));
     const service1 = JSON.parse(localStorage.getItem("Online service"));
@@ -90,16 +91,16 @@ function FinishingYear() {
   return (
     <>
       {matches ? (
+        // width 375
         <Stack
           style={{
-            // minHeight: "440px",
-            // maxHeight: "500px",
             width: "340px",
             backgroundColor: "white",
             position: "absolute",
             top: "11%",
             margin: "20px",
             left: "0",
+            borderRadius: "9px",
           }}
           maxHeight={"570"}
           direction={"column"}
@@ -108,6 +109,7 @@ function FinishingYear() {
           justifyContent={"flex-start"}
           spacing={4}
         >
+          {/* heading */}
           <Grid container color={"hsl(213, 96%, 18%)"} marginTop={"40px"}>
             <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
               Finishing up
@@ -116,7 +118,7 @@ function FinishingYear() {
               Double-check everything looks OK before confirming.
             </Typography>
           </Grid>
-
+          {/* body */}
           <Grid
             container
             sx={{
@@ -295,6 +297,7 @@ function FinishingYear() {
           </Grid>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           style={{
             height: "570px",
@@ -308,6 +311,7 @@ function FinishingYear() {
           marginLeft={"100px"}
           gap={3}
         >
+          {/* heading */}
           <Grid container color={"hsl(213, 96%, 18%)"} marginTop={"40px"}>
             <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
               Finishing up
@@ -316,7 +320,7 @@ function FinishingYear() {
               Double-check everything looks OK before confirming.
             </Typography>
           </Grid>
-
+          {/* body */}
           <Grid
             container
             sx={{

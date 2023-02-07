@@ -7,16 +7,12 @@ import Thank from "../component/Thank";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ThankYouPage() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
     <>
       {matches ? (
-        // <Stack
-        //   sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
-        //   direction="row"
-        //   justifyItems="center"
-        //   alignItems="center"
-        // >
+        // width 375
         <Container
           sx={{
             height: "100vh",
@@ -62,7 +58,7 @@ function ThankYouPage() {
           <Thank />
         </Container>
       ) : (
-        // </Stack>
+        // width 1440
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"

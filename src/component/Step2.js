@@ -86,29 +86,30 @@ function Step2() {
 
   // change month / year
   const handelSwitch = (event) => {
-    let h = { ...activeState };
+    let newActiveState = { ...activeState };
     if (event.target.checked) {
-      h = {
+      newActiveState = {
         inActiveColor: "hsl(213, 96%, 18%)",
         activeColor: "hsl(231, 11%, 63%)",
         checked: event.target.checked,
         month_year: "Yearly",
       };
-      setActiveState(h);
+      setActiveState(newActiveState);
+      handelClick();
     } else {
-      h = {
+      newActiveState = {
         activeColor: "hsl(213, 96%, 18%)",
         inActiveColor: "hsl(231, 11%, 63%)",
         checked: event.target.checked,
         month_year: "Monthly",
       };
-      setActiveState(h);
+      setActiveState(newActiveState);
+      handelClick();
     }
   };
 
   // handel choose
   const handelClick = (planName, price, e) => {
-    console.log(price);
     let newPlan = { ...plans };
     newPlan = {
       backgroundPlan: "hsl(231, 100%, 99%)",
@@ -118,7 +119,7 @@ function Step2() {
     };
     setplan(newPlan);
   };
-
+  // save data to local storage
   useEffect(() => {
     localStorage.setItem(
       "plan name",
@@ -129,6 +130,8 @@ function Step2() {
       })
     );
   }, [plans.eventTarget, activeState.month_year, plans.price]);
+
+  // use navigation
   const navigate = useNavigate();
   const checkSelected = (e) => {
     e.preventDefault();
@@ -145,11 +148,10 @@ function Step2() {
         <>
           <Stack
             style={{
-              minHeight: "502px",
+              minHeight: "468",
               maxHeight: "530px",
               width: "345px",
             }}
-            // maxHeight={"570px"}
             direction={"column"}
             alignItems={"flex-start"}
             padding={"15px 25px"}
@@ -165,8 +167,9 @@ function Step2() {
             <Grid
               container
               color={"hsl(213, 96%, 18%)"}
-              paddingTop={"15px"}
+              paddingTop={"0"}
               paddingBottom={"25px"}
+              borderRadius={"9px"}
             >
               <Typography component={"h1"} fontWeight={700} fontSize={"1.5rem"}>
                 Select your plan
@@ -184,7 +187,7 @@ function Step2() {
               container
               justifyContent={"space-between"}
               direction={"column"}
-              gap={"15px"}
+              gap={activeState.checked ? "10px" : "15px"}
               marginBottom={"20px"}
             >
               {plans.err && (
@@ -206,7 +209,9 @@ function Step2() {
                   "Arcade" === plans.eventTarget ? plans.backgroundPlan : "none"
                 }
                 planBorder={
-                  "Arcade" === plans.eventTarget ? plans.planBorder : "none"
+                  "Arcade" === plans.eventTarget
+                    ? plans.planBorder
+                    : "hsl(231, 11%, 63%)"
                 }
                 price={!activeState.checked ? "$9/mo" : "$90/yr"}
                 free={!activeState.checked ? "" : "2 months free"}
@@ -223,7 +228,9 @@ function Step2() {
                     : "none"
                 }
                 planBorder={
-                  "Advanced" === plans.eventTarget ? plans.planBorder : "none"
+                  "Advanced" === plans.eventTarget
+                    ? plans.planBorder
+                    : "hsl(231, 11%, 63%)"
                 }
                 price={!activeState.checked ? "$12/mo" : "$120/yr"}
                 free={!activeState.checked ? "" : "2 months free"}
@@ -238,7 +245,9 @@ function Step2() {
                   "Pro" === plans.eventTarget ? plans.backgroundPlan : "none"
                 }
                 planBorder={
-                  "Pro" === plans.eventTarget ? plans.planBorder : "none"
+                  "Pro" === plans.eventTarget
+                    ? plans.planBorder
+                    : "hsl(231, 11%, 63%)"
                 }
                 price={!activeState.checked ? "$15/mo" : "$150/yr"}
                 free={!activeState.checked ? "" : "2 months free"}
@@ -381,7 +390,9 @@ function Step2() {
                 "Arcade" === plans.eventTarget ? plans.backgroundPlan : "none"
               }
               planBorder={
-                "Arcade" === plans.eventTarget ? plans.planBorder : "none"
+                "Arcade" === plans.eventTarget
+                  ? plans.planBorder
+                  : "hsl(231, 11%, 63%)"
               }
               price={!activeState.checked ? "$9/mo" : "$90/yr"}
               free={!activeState.checked ? "" : "2 months free"}
@@ -396,7 +407,9 @@ function Step2() {
                 "Advanced" === plans.eventTarget ? plans.backgroundPlan : "none"
               }
               planBorder={
-                "Advanced" === plans.eventTarget ? plans.planBorder : "none"
+                "Advanced" === plans.eventTarget
+                  ? plans.planBorder
+                  : "hsl(231, 11%, 63%)"
               }
               price={!activeState.checked ? "$12/mo" : "$120/yr"}
               free={!activeState.checked ? "" : "2 months free"}
@@ -411,7 +424,9 @@ function Step2() {
                 "Pro" === plans.eventTarget ? plans.backgroundPlan : "none"
               }
               planBorder={
-                "Pro" === plans.eventTarget ? plans.planBorder : "none"
+                "Pro" === plans.eventTarget
+                  ? plans.planBorder
+                  : "hsl(231, 11%, 63%)"
               }
               price={!activeState.checked ? "$15/mo" : "$150/yr"}
               free={!activeState.checked ? "" : "2 months free"}

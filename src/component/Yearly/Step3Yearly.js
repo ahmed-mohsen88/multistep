@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Step3Yearly(props) {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
     <>
       {matches ? (
         <>
+          {/* 375 width */}
           {/* container */}
           <Stack
             style={{
@@ -20,6 +22,7 @@ function Step3Yearly(props) {
               top: "11%",
               margin: "20px",
               left: "0",
+              borderRadius: "9px",
             }}
             maxHeight={"570"}
             direction={"column"}
@@ -45,52 +48,8 @@ function Step3Yearly(props) {
             <Grid container gap={2}>
               {props.children}
             </Grid>
-
-            {/* button */}
-            {/* <Grid container height={"100%"} justifyContent={"space-between"}>
-            <Link
-              to={"/page2"}
-              style={{
-                display: "flex",
-                textDecoration: "none",
-                alignSelf: "flex-end",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                style={{
-                  color: "hsl(231, 11%, 63%)",
-                  height: "38px",
-                  width: "124px",
-                }}
-              >
-                Go back
-              </Typography>
-            </Link>
-            <Link
-              to="/page4year"
-              style={{
-                display: "flex",
-                textDecoration: "none",
-                alignSelf: "flex-end",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                sx={{
-                  backgroundColor: "hsl(213, 96%, 18%)",
-                  color: "white",
-                  alignSelf: "flex-end",
-                  height: "49px",
-                  width: "124px",
-                }}
-                variant="contained"
-              >
-                Next Step
-              </Button>
-            </Link>
-          </Grid> */}
           </Stack>
+          {/* buttons */}
           <Grid
             container
             height={"100%"}
@@ -147,6 +106,7 @@ function Step3Yearly(props) {
           </Grid>
         </>
       ) : (
+        // 1440 width
         // container
         <Stack
           style={{

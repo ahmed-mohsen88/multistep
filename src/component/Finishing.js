@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Finishing() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
+  //  state
   const [data, setdata] = useState({
     planName: "",
     per: "",
@@ -17,6 +19,8 @@ function Finishing() {
     customPrice: "",
     total: "",
   });
+
+  // save in local storage if back
 
   useEffect(() => {
     const plan = JSON.parse(localStorage.getItem("plan name"));
@@ -90,17 +94,17 @@ function Finishing() {
   return (
     <>
       {matches ? (
+        // width 375
         <>
           <Stack
             style={{
-              // minHeight: "440px",
-              // maxHeight: "500px",
               width: "340px",
               backgroundColor: "white",
               position: "absolute",
               top: "11%",
               margin: "20px",
               left: "0",
+              borderRadius: "9px",
             }}
             maxHeight={"570"}
             direction={"column"}
@@ -109,6 +113,7 @@ function Finishing() {
             justifyContent={"flex-start"}
             spacing={4}
           >
+            {/* heading */}
             <Grid container color={"hsl(213, 96%, 18%)"} marginTop={"10px"}>
               <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
                 Finishing up
@@ -126,6 +131,7 @@ function Finishing() {
                 borderRadius: "9px",
               }}
             >
+              {/* body */}
               <Grid container justifyContent={"space-between"} display={"flex"}>
                 <Stack>
                   <Typography
@@ -144,6 +150,7 @@ function Finishing() {
                           textDecorationColor: "hsl(231, 11%, 63%)",
                           textDecoration: "underline",
                         }}
+                        // set hover effect
                         onMouseOver={(e) => {
                           e.target.style.color = "hsl(243, 100%, 62%)";
                           e.target.style.textDecorationColor =
@@ -170,6 +177,7 @@ function Finishing() {
                   </Typography>
                 </Grid>
               </Grid>
+              {/* services */}
               <Grid
                 container
                 display={"flex"}
@@ -230,7 +238,7 @@ function Finishing() {
                 )}
               </Grid>
             </Grid>
-
+            {/* total */}
             <Grid
               container
               display={"flex"}
@@ -311,6 +319,7 @@ function Finishing() {
           </Grid>
         </>
       ) : (
+        // width 1440
         <Stack
           style={{
             height: "570px",
@@ -324,6 +333,7 @@ function Finishing() {
           marginLeft={"100px"}
           gap={3}
         >
+          {/* heading */}
           <Grid container color={"hsl(213, 96%, 18%)"} marginTop={"40px"}>
             <Typography component={"h1"} fontWeight={700} fontSize={"2rem"}>
               Finishing up
@@ -332,7 +342,7 @@ function Finishing() {
               Double-check everything looks OK before confirming.
             </Typography>
           </Grid>
-
+          {/* body */}
           <Grid
             container
             sx={{
@@ -442,7 +452,7 @@ function Finishing() {
               )}
             </Grid>
           </Grid>
-
+          {/* total */}
           <Grid
             container
             display={"flex"}

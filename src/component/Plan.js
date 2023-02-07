@@ -11,6 +11,7 @@ function Plan({
   free,
   handelClick,
 }) {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
 
   return (
@@ -22,13 +23,16 @@ function Plan({
           justifyContent={"flex-start"}
           alignItems={"flex-start"}
           width={"100%"}
-          minHeight={"85px"}
+          minHeight={"75px"}
           maxHeight={"88px"}
           borderRadius={"9px"}
           backgroundColor={backgroundPlan}
-          border={"2px solid"}
-          borderColor={planBorder}
+          border={`2px solid ${planBorder}`}
+          // borderColor={planBorder}
           className="plan"
+          sx={{
+            borderColor: { planBorder },
+          }}
           onClick={(e) => handelClick(planName, price, e)}
         >
           <Grid margin={"15px"}>

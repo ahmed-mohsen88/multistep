@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ServicesYearly({ service_text, service_desc, price }) {
+  // state  to set active service
   const [active, setactive] = useState({
     checked: false,
     serviceName: "",
     ServicePrice: "",
   });
-
+  // store values in local storage
   useEffect(() => {
     if (active.checked) {
       localStorage.setItem(
@@ -29,6 +30,7 @@ function ServicesYearly({ service_text, service_desc, price }) {
     }
   }, [active]);
 
+  // handel service click
   const handelChange = (e) => {
     let newActive = { ...active };
     newActive = {
@@ -38,12 +40,13 @@ function ServicesYearly({ service_text, service_desc, price }) {
     };
     setactive(newActive);
   };
-
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
 
   return (
     <>
       {matches ? (
+        // 375 width
         <Grid
           container
           justifyContent={"space-between"}
@@ -117,6 +120,7 @@ function ServicesYearly({ service_text, service_desc, price }) {
           </Grid>
         </Grid>
       ) : (
+        // 1440 width
         <Grid
           container
           justifyContent={"space-between"}

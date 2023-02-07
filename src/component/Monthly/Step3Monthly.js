@@ -8,7 +8,7 @@ function Step3Monthly(props) {
   return (
     <>
       {matches ? (
-        // container
+        // container 375 width
         <>
           <Stack
             style={{
@@ -20,6 +20,7 @@ function Step3Monthly(props) {
               top: "11%",
               margin: "20px",
               left: "0",
+              borderRadius: "9px",
             }}
             maxHeight={"570"}
             direction={"column"}
@@ -104,7 +105,7 @@ function Step3Monthly(props) {
           </Grid>
         </>
       ) : (
-        // container
+        // container 1440 width
         <Stack
           style={{
             height: "570px",

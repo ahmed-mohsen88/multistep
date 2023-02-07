@@ -6,7 +6,9 @@ import Step from "../component/Step";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Page1() {
+  // state
   const [submit, setsubmit] = useState(false);
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
 
   return (
@@ -24,8 +26,10 @@ function Page1() {
             margin: "0",
             position: "relative",
             background: "hsl(217, 100%, 97%)",
+            overflow:"hidden"
           }}
         >
+          {/* sidebar */}
           <SideBar>
             <Grid>
               <Step
@@ -44,6 +48,7 @@ function Page1() {
               <Step stepNumber="4" circle_color="inherit" numberColor="white" />
             </Grid>
           </SideBar>
+          {/* form */}
           <Form formSubmit={submit} />
         </Container>
       ) : (

@@ -4,14 +4,14 @@ import thank from "../assets/images/icon-thank-you.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Thank() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
     <>
       {matches ? (
+        // 375 width
         <Stack
           style={{
-            // minHeight: "440px",
-            // maxHeight: "500px",
             width: "340px",
             backgroundColor: "white",
             position: "absolute",
@@ -25,6 +25,7 @@ function Thank() {
           padding={"30px"}
           justifyContent={"flex-start"}
           spacing={4}
+          borderRadius={"9px"}
         >
           <img src={thank} alt="thank you" style={{ paddingTop: "60px" }} />
           <Typography
@@ -51,6 +52,7 @@ function Thank() {
           </p>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           style={{
             height: "570px",

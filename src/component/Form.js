@@ -5,20 +5,18 @@ import {
   Grid,
   Snackbar,
   Stack,
-  Switch,
   TextField,
-  ThemeProvider,
   Typography,
-  createTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "../assets/Css/form.css";
 import styled from "styled-components";
 
 function Form({ formSubmit }) {
+  // state
   const [profile, setprofile] = useState({
     name: "",
     email: "",
@@ -31,6 +29,7 @@ function Form({ formSubmit }) {
     },
     loading: false,
   });
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
 
   // update state
@@ -38,13 +37,13 @@ function Form({ formSubmit }) {
     const newProfile = { ...profile };
     newProfile[name] = e.target.value;
     setprofile(newProfile);
-    console.log(profile);
   };
 
   // save to local storage &&&& validation
   const navigate = useNavigate();
   const saveProfile = (e) => {
     e.preventDefault();
+    // validation
     if (!profile.name) {
       setprofile({
         ...profile,
@@ -70,6 +69,11 @@ function Form({ formSubmit }) {
         ...profile,
         err: { phone: true, message: "Please fill Phone field" },
       });
+    } else if (isNaN(profile.phone)) {
+      setprofile({
+        ...profile,
+        err: { phone: true, message: "phone must be a number" },
+      });
     } else if (profile.phone.length < 10) {
       setprofile({
         ...profile,
@@ -90,21 +94,15 @@ function Form({ formSubmit }) {
       }, 3000);
     }
   };
-  const AntSwitch = styled(TextField)(({ theme }) => ({
-    "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input ": {
-      padding: "10px",
-    },
-  }));
-  // };
-
-  // validation
 
   return (
     <>
       {matches ? (
+        // width 375
         <Stack
           style={{
-            height: "395px",
+            minHeight: "395px",
+            maxHeight: "450px",
             width: "93%%",
             background: "hsl(231, 100%, 99%)",
             top: "100px",
@@ -112,7 +110,7 @@ function Form({ formSubmit }) {
             boxShadow: "0px 0px 18px -4px",
             borderRadius: "9px",
           }}
-          maxHeight={"570px"}
+          maxHeight={"620px"}
           direction={"column"}
           alignItems={"flex-start"}
           padding={"30px 20px"}
@@ -120,9 +118,8 @@ function Form({ formSubmit }) {
           marginLeft={"15px"}
           marginRight={"15px"}
           position={"absolute"}
-
-          // spacing={-1}
         >
+          {/* heading */}
           <Grid container color={"hsl(213, 96%, 18%)"}>
             <Typography component={"h1"} fontWeight={700} fontSize={"1.7rem"}>
               Personal info
@@ -137,21 +134,28 @@ function Form({ formSubmit }) {
             flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"flex-start"}
-            // height={"100%"}
             id="mainForm"
             onSubmit={(e) => {
               saveProfile(e);
             }}
           >
+            {/* if form submitted successfully */}
             {profile.loading && (
               <>
                 <CircularProgress />
                 <Snackbar
                   open={true}
-                  autoHideDuration={3000}
-                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  autoHideDuration={6000}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
                 >
-                  <Alert severity="success" sx={{ width: "100%" }}>
+                  <Alert
+                    severity="success"
+                    sx={{ width: "100%", marginBottom: "130px" }}
+                  >
+                    {" "}
                     success !
                   </Alert>
                 </Snackbar>
@@ -167,17 +171,23 @@ function Form({ formSubmit }) {
                         color={" hsl(354, 84%, 57%)"}
                         fontWeight={500}
                       >
-                        This field is required
+                        {profile.err.message}{" "}
                       </Typography>
-                      <Snackbar
+                      {/* <Snackbar
                         open={true}
                         autoHideDuration={6000}
-                        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                        anchorOrigin={{
+                          vertical: "bottom",
+                          horizontal: "left",
+                        }}
                       >
-                        <Alert severity="error" sx={{ width: "100%" }}>
+                        <Alert
+                          severity="error"
+                          sx={{ width: "100%", marginBottom: "130px" }}
+                        >
                           {profile.err.message}
                         </Alert>
-                      </Snackbar>
+                      </Snackbar> */}
                     </>
                   )}
                 </Grid>
@@ -188,13 +198,11 @@ function Form({ formSubmit }) {
                     color: "hsl(231, 11%, 63%)",
                     padding: "0",
                   }}
-                  rows={1}
                   hiddenLabel
                   placeholder={"e.g. Stephen King"}
                   onChange={(e) => {
                     handelChange(e, "name");
                   }}
-                  // required={true}
                 />
               </Grid>
 
@@ -209,17 +217,23 @@ function Form({ formSubmit }) {
                         color={" hsl(354, 84%, 57%)"}
                         fontWeight={500}
                       >
-                        This field is required
+                        {profile.err.message}{" "}
                       </Typography>
-                      <Snackbar
+                      {/* <Snackbar
                         open={true}
                         autoHideDuration={6000}
-                        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                        anchorOrigin={{
+                          vertical: "bottom",
+                          horizontal: "left",
+                        }}
                       >
-                        <Alert severity="error" sx={{ width: "100%" }}>
+                        <Alert
+                          severity="error"
+                          sx={{ width: "100%", marginBottom: "130px" }}
+                        >
                           {profile.err.message}
                         </Alert>
-                      </Snackbar>
+                      </Snackbar> */}
                     </>
                   )}
                 </Grid>
@@ -232,7 +246,6 @@ function Form({ formSubmit }) {
                   onChange={(e) => {
                     handelChange(e, "email");
                   }}
-                  // required={true}
                 />
               </Grid>
 
@@ -247,17 +260,26 @@ function Form({ formSubmit }) {
                         color={" hsl(354, 84%, 57%)"}
                         fontWeight={500}
                       >
-                        This field is required
+                        {profile.err.message}{" "}
                       </Typography>
-                      <Snackbar
+                      {/* <Snackbar
                         open={true}
                         autoHideDuration={6000}
-                        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                        anchorOrigin={{
+                          vertical: "bottom",
+                          horizontal: "left",
+                        }}
                       >
-                        <Alert severity="error" sx={{ width: "100%" }}>
+                        <Alert
+                          severity="error"
+                          sx={{
+                            width: "100%",
+                            marginBottom: "100px",
+                          }}
+                        >
                           {profile.err.message}
                         </Alert>
-                      </Snackbar>
+                      </Snackbar> */}
                     </>
                   )}
                 </Grid>
@@ -269,49 +291,48 @@ function Form({ formSubmit }) {
                   onChange={(e) => {
                     handelChange(e, "phone");
                   }}
-                  // required={true}
                 />
               </Grid>
             </Grid>
-
+            {/* buttons */}
             <Grid
               container
               alignItems={"flex-end"}
               justifyContent={"flex-end"}
               sx={{
-                position: "absolute",
-                bottom: "-171px",
+                position: "fixed",
+                bottom: "0",
                 zIndex: "2",
                 background: "white",
                 width: "375px",
                 height: "75px",
               }}
             >
-              {/* <Link to={"/page2"} style={{ textDecoration: "none" }}> */}
-              <Button
-                // onSubmit={saveProfile}
-                // onClick={(e) => {
-                //   e.preventDefault();
-                // }}
-                style={{
-                  backgroundColor: "hsl(213, 96%, 18%)",
-                  color: "white",
-                  alignSelf: "flex-end",
-                  height: "49px",
-                  width: "124px",
-                  margin: "15px",
-                }}
-                variant="contained"
-                role={"button"}
-                type="submit"
-              >
-                Next Step
-              </Button>
-              {/* </Link> */}
+              <Link to={"/page2"} style={{ textDecoration: "none" }}>
+                <Button
+                  style={{
+                    backgroundColor: "hsl(213, 96%, 18%)",
+                    color: "white",
+                    alignSelf: "flex-end",
+                    height: "49px",
+                    width: "124px",
+                    margin: "15px",
+                  }}
+                  variant="contained"
+                  role={"button"}
+                  type="submit"
+                  onClick={(e) => {
+                    saveProfile(e);
+                  }}
+                >
+                  Next Step
+                </Button>
+              </Link>
             </Grid>
           </Box>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           style={{
             height: "570px",
@@ -325,8 +346,9 @@ function Form({ formSubmit }) {
           marginLeft={"100px"}
           spacing={1}
         >
-          <Grid container color={"hsl(213, 96%, 18%)"}>
-            <Typography component={"h1"} fontWeight={700} fontSize={"1rem"}>
+          {/* heading */}
+          <Grid container color={"hsl(213, 96%, 18%)"} marginTop={"38px"}>
+            <Typography component={"h1"} fontWeight={700} fontSize={"1.5rem"}>
               Personal info
             </Typography>
             <Typography component={"span"}>
@@ -340,10 +362,9 @@ function Form({ formSubmit }) {
             alignItems={"center"}
             justifyContent={"space-between"}
             height={"100%"}
-            onSubmit={(e) => {
-              // saveProfile(e);
-            }}
+            onSubmit={(e) => {}}
           >
+            {/* if submitted successfully */}
             {profile.loading && (
               <>
                 <CircularProgress />
@@ -358,7 +379,7 @@ function Form({ formSubmit }) {
                 </Snackbar>
               </>
             )}
-            <Grid container rowSpacing={3} marginTop={"15px"}>
+            <Grid container rowSpacing={2} marginTop={"15px"}>
               <Grid item style={{ width: "100%" }}>
                 <Grid container justifyContent={"space-between"}>
                   <Typography color={"hsl(213, 96%, 18%)"}>Name</Typography>
@@ -389,7 +410,6 @@ function Form({ formSubmit }) {
                   onChange={(e) => {
                     handelChange(e, "name");
                   }}
-                  // required={true}
                 />
               </Grid>
 
@@ -426,7 +446,6 @@ function Form({ formSubmit }) {
                   onChange={(e) => {
                     handelChange(e, "email");
                   }}
-                  // required={true}
                 />
               </Grid>
 
@@ -462,32 +481,28 @@ function Form({ formSubmit }) {
                   onChange={(e) => {
                     handelChange(e, "phone");
                   }}
-                  // required={true}
                 />
               </Grid>
             </Grid>
-
+            {/* buttons */}
             <Grid container alignItems={"flex-end"} justifyContent={"flex-end"}>
-              {/* <Link to={"/page2"} style={{ textDecoration: "none" }}> */}
               <Button
-                // onSubmit={saveProfile}
-                // onClick={(e) => {
-                //   e.preventDefault();
-                // }}
                 sx={{
                   backgroundColor: "hsl(213, 96%, 18%)",
                   color: "white",
                   alignSelf: "flex-end",
-                  height: "49px",
-                  width: "124px",
+                  height: "50px",
+                  width: "130px",
                 }}
                 variant="contained"
                 role={"button"}
                 type="submit"
+                onClick={(e) => {
+                  saveProfile(e);
+                }}
               >
                 Next Step
               </Button>
-              {/* </Link> */}
             </Grid>
           </Box>
         </Stack>
@@ -495,5 +510,11 @@ function Form({ formSubmit }) {
     </>
   );
 }
+
+const AntSwitch = styled(TextField)(() => ({
+  "& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input ": {
+    padding: "10px",
+  },
+}));
 
 export default Form;

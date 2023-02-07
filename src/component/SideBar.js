@@ -6,11 +6,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Container, Grid } from "@mui/material";
 
 function SideBar(props) {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return matches ? (
+    // width 375
     <Grid
       container
-      // width={"100%"}
       height={"180px"}
       style={{
         position: "relative",
@@ -47,6 +48,7 @@ function SideBar(props) {
       </Container>
     </Grid>
   ) : (
+    // width 1440
     <Stack
       style={{
         height: "570px",

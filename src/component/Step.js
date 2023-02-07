@@ -3,10 +3,12 @@ import React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Step({ stepNumber, circle_color, numberColor, stepText }) {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
     <>
       {matches ? (
+        // 375 width
         <Grid
           container
           className="step"
@@ -33,14 +35,9 @@ function Step({ stepNumber, circle_color, numberColor, stepText }) {
               {stepNumber}
             </Typography>
           </Grid>
-          {/* <Grid item xs={6}>
-            <Typography component={"p"}>{`${stepNumber}`}</Typography>
-            <Typography component={"h2"} fontWeight={700}>
-              {stepText}
-            </Typography>
-          </Grid> */}
         </Grid>
       ) : (
+        // width 1440
         <Grid
           container
           className="step"

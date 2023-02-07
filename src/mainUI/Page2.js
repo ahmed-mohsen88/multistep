@@ -7,12 +7,12 @@ import "../assets/Css/step2.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Page2() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
     <>
       {matches ? (
         // width 375
-
         <Container
           sx={{
             height: "100vh",

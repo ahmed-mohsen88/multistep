@@ -7,11 +7,13 @@ import FinishingYear from "../component/FinishingYear";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Page4year() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
 
   return (
     <>
       {matches ? (
+        // width 375
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"
@@ -24,7 +26,6 @@ function Page4year() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
-              // width: "100%",
               padding: "0",
               margin: "0",
               position: "relative",
@@ -68,6 +69,7 @@ function Page4year() {
           </Container>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"

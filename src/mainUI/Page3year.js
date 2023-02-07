@@ -8,9 +8,11 @@ import ServicesYearly from "../component/Yearly/ServicesYearly";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Page3year() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
+  // listen to window back button
   const [hash, sethash] = useState(window.location.hash);
-  console.log(hash);
+  // reset local storage
   useEffect(() => {
     sethash("page3year");
     window.location.hash = "page3year";
@@ -23,6 +25,7 @@ function Page3year() {
   return (
     <>
       {matches ? (
+        // width 375
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"
@@ -98,6 +101,7 @@ function Page3year() {
           </Container>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"

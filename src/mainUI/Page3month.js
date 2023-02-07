@@ -8,22 +8,26 @@ import ServicesMonthly from "../component/Monthly/ServicesMonthly";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Page3month() {
+  // use media query
   const matches = useMediaQuery("(max-width:376px)");
+  // state to listen to window back button
   const [hash, sethash] = useState(window.location.hash);
-  console.log(hash);
-  useEffect(() => {
-    sethash("page3month");
-    window.location.hash = "page3month";
-    window.addEventListener("hashchange", function (e) {
-      localStorage.removeItem("Online service");
-      localStorage.removeItem("Larger storage");
-      localStorage.removeItem("Customizable Profile");
-    });
-  }, []);
+  
+  // handel back button
+  // useEffect(() => {
+  //   sethash("page3month");
+  //   window.location.hash = "page3month";
+  //   window.addEventListener("hashchange", function (e) {
+  //     localStorage.removeItem("Online service");
+  //     localStorage.removeItem("Larger storage");
+  //     localStorage.removeItem("Customizable Profile");
+  //   });
+  // }, []);
 
   return (
     <>
       {matches ? (
+        // width 375
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"
@@ -99,6 +103,7 @@ function Page3month() {
           </Container>
         </Stack>
       ) : (
+        // width 1440
         <Stack
           sx={{ height: "100vh", background: " hsl(217, 100%, 97%)" }}
           direction="row"
