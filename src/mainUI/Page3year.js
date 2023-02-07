@@ -23,7 +23,7 @@ function Page3year() {
     });
   }, []);
   return (
-    <>
+    <main>
       {matches ? (
         // width 375
         <Stack
@@ -170,7 +170,7 @@ function Page3year() {
           </Container>
         </Stack>
       )}
-    </>
+    </main>
   );
 }
 

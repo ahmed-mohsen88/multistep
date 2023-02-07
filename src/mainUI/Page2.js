@@ -10,7 +10,7 @@ function Page2() {
   // use media query
   const matches = useMediaQuery("(max-width:376px)");
   return (
-    <>
+    <main>
       {matches ? (
         // width 375
         <Container
@@ -101,7 +101,7 @@ function Page2() {
           </Container>
         </Stack>
       )}
-    </>
+    </main>
   );
 }
 

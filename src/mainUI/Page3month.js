@@ -25,7 +25,7 @@ function Page3month() {
   // }, []);
 
   return (
-    <>
+    <main>
       {matches ? (
         // width 375
         <Stack
@@ -172,7 +172,7 @@ function Page3month() {
           </Container>
         </Stack>
       )}
-    </>
+    </main>
   );
 }
 

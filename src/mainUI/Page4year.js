@@ -11,7 +11,7 @@ function Page4year() {
   const matches = useMediaQuery("(max-width:376px)");
 
   return (
-    <>
+    <main>
       {matches ? (
         // width 375
         <Stack
@@ -119,7 +119,7 @@ function Page4year() {
           </Container>
         </Stack>
       )}
-    </>
+    </main>
   );
 }
 
